@@ -33,10 +33,37 @@ public class VentaDao extends AppCrud{
     
     public void registrarVenta(){
 
+       double subtotalXX=0;
+       double totalImporteXX=0;
+       double descuentoXX=0;
+
        VentaTO ventTo=crearVenta();
+       String opcion="SI";
+
        if(ventTo!=null){
-           util.clearConsole();
+           //util.clearConsole();
            System.out.println("**********Agregar productos a carrito de ventas**********");
+           do{
+               VentaDetalleTO dataVD=carritoVenta(ventTo);
+               subtotalXX=subtotalXX+dataVD.getPrecioTotal();
+               opcion=leerTecla.leer("", "¿Desea agragar un producto más? SI/NO");
+           }while (opcion.toUpperCase().equals("SI"));
+
+           //Actualizar Tabla Ventas
+           if(leerTecla.leer("SI", "Desea aplicar Descuento? SI/NO").toUpperCase().equals("SI")){
+               //por implementar
+
+           }else{
+               descuentoXX=0;
+           }
+           totalImporteXX=subtotalXX-descuentoXX;
+           ventTo.setDescuento(descuentoXX);
+           ventTo.setSubtotal(subtotalXX);
+           ventTo.setTotalimporte(totalImporteXX);
+
+           leerArch=new LeerArchivo(TABLA_VENTAS);
+           editarRegistro(leerArch, 0, ventTo.getIdVenta(), ventTo);
+         
         }
     }       
 
@@ -84,10 +111,26 @@ public class VentaDao extends AppCrud{
     }
 
     public VentaDetalleTO carritoVenta(VentaTO venT){
-        
+        mostrarProducto();
+        ventaDetalleTO=new VentaDetalleTO();
         leerArch=new LeerArchivo(TABLA_VENTA_DETALLE);
 
-        return null;
+        ventaDetalleTO.setIdDetVenta(generarId(leerArch, 0, "DV", 2));
+        ventaDetalleTO.setIdVenta(venT.getIdVenta());
+        ventaDetalleTO.setIdProd(leerTecla.leer("","Ingrese el Id del Producto a vender"));
+        leerArch=new LeerArchivo(TABLA_PRODUCTO);
+        Object[][] prodData=buscarContenido(leerArch, 0, ventaDetalleTO.getIdProd());
+        if(prodData!=null){
+            double precioX=Double.parseDouble(String.valueOf(prodData[0][4]))
+            +Double.parseDouble(String.valueOf(prodData[0][5]));
+            ventaDetalleTO.setPrecioUnit(precioX);
+        }
+        ventaDetalleTO.setCantidad(leerTecla.leer(0, "Ingrese la cantidad"));
+        ventaDetalleTO.setPrecioTotal(ventaDetalleTO.getPrecioUnit()*ventaDetalleTO.getCantidad());
+        leerArch=new LeerArchivo(TABLA_VENTA_DETALLE);
+        agregarContenido(leerArch, ventaDetalleTO);
+
+        return ventaDetalleTO;
     }
 
     public void mostrarProducto(){

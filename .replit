@@ -1,0 +1,2 @@
+language = "java"
+run = "java -jar target/ProyectoProgramacion-1.0-SNAPSHOT.jar "

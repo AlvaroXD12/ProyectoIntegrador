@@ -15,7 +15,6 @@ public class ProductoDao extends AppCrud{
     LeerArchivo leerArch;
     ProductoTO prodTO;
 
-    String tipoProd="ArrozFaraon\nCereales\n";
 
     public Object[][] crearProducto() {
 
@@ -23,18 +22,32 @@ public class ProductoDao extends AppCrud{
         prodTO = new ProductoTO();
         prodTO.setIdProd(generarId(leerArch,0,"p",1));
         prodTO.setNombre(leerTecla.leer("", "ingrese el nombre del producto"));
-        prodTO.setPrecio(leerTecla.leer(0, "Ingrese el precio base del roducto"));
-        prodTO.setUnidadMed(leerTecla.leer("", "ingresa unidad de medida"));
-        prodTO.setTipo(leerTecla.leer("", "Ingrese el tipo("+tipoProd+")"));
+        prodTO.setPrecio(leerTecla.leer(0.0, "Ingrese el precio base del producto"));
+        prodTO.setPesoKilos(leerTecla.leer("", "ingrese los kilos del saco"));
+        prodTO.setTipo(leerTecla.leer("", "Ingrese el tipo de producto"));
         prodTO.setUtilidad(leerTecla.leer(0, "Ingrese la utilidad, ejemplo: 0.02"));
         prodTO.setStock(leerTecla.leer(0, "Ingrese el stock"));
         leerArch=new LeerArchivo(TABLA_PRODUCTO);
         return agregarContenido(leerArch,prodTO);
         
-      
-     
-
-        
     }
-    
+
+    public void reportarProductos() {
+        util.clearConsole();
+        leerArch=new LeerArchivo(TABLA_PRODUCTO);
+       Object[][] data= listarContenido(leerArch);
+       util.pintarLine('H', 32);
+       util.pintarTextHeadBody('H', 3, "ID,Nombre,Precio,Stock,Kilos");
+       System.out.println("");        
+       util.pintarLine('H', 32);
+       String dataPrint="";
+       for (int i = 0; i < data.length; i++) {            
+            dataPrint=data[i][0]+","+data[i][1]+","+data[i][3]+","+data[i][5]+","+data[i][6];
+            util.pintarTextHeadBody('B', 3, dataPrint);   
+       }
+       util.pintarLine('H', 32);
+       System.out.println();
+    }
+
+
 }

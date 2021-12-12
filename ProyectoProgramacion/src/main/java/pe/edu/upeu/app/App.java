@@ -11,7 +11,7 @@ public class App{
     public static ClienteTO[] cliente;
 
     public static void ejemploCleinteVector() {
-        System.out.println( "Hello David" );
+        System.out.println( "Hola Alvaro" );
 
         cliente=new ClienteTO[3];
 
@@ -23,7 +23,6 @@ public class App{
             System.out.println(cliente.getDni()+"\t"+cliente.getNombre()+"\t\t"+cliente.getCelular());
         }        
     }
-
     public static void main( String[] args ){    
         MenuPrincipal mp=new MenuPrincipal();
         mp.menuOpciones();

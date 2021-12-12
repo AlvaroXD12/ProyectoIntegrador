@@ -7,19 +7,19 @@ public class ProductoTO {
    public double precio;
    public double utilidad;
    public int stock;
-   public String unidadMed;
+   public String pesoKilos;
 
    
 
    public ProductoTO(String idProd, String nombre, String tipo, double precio, double utilidad, int stock,
-         String unidadMed) {
+         String pesoKilos) {
       this.idProd = idProd;
       this.nombre = nombre;
       this.tipo = tipo;
       this.precio = precio;
       this.utilidad = utilidad;
       this.stock = stock;
-      this.unidadMed = unidadMed;
+      this.pesoKilos = pesoKilos;
    }
    
    public ProductoTO() {
@@ -43,7 +43,7 @@ public String getIdProd() {return idProd;}
    public int getStock() {return stock;}
    public void setStock(int stock) {this.stock = stock;}
 
-   public String getUnidadMed() {return unidadMed;}
-   public void setUnidadMed(String unidadMed) {this.unidadMed = unidadMed;}
+   public String getPesoKilos() {return pesoKilos;}
+   public void setPesoKilos(String pesoKilos) {this.pesoKilos = pesoKilos;}
    
 }

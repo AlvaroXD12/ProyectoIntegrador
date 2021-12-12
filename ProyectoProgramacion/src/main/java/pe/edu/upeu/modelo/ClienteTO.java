@@ -11,6 +11,9 @@ public class ClienteTO {
         this.celular = celular;
     }
 
+    public ClienteTO() {
+    }
+
     public String getDni() {return dni;}
     public void setDni(String dni) {this.dni = dni;}
     

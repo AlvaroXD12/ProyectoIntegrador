@@ -3,12 +3,13 @@ package pe.edu.upeu.app;
 import pe.edu.upeu.dao.ProductoDao;
 import pe.edu.upeu.dao.UsuarioDao;
 import pe.edu.upeu.utils.LeerTeclado;
-
+import pe.edu.upeu.dao.VentaDao;
 public class MenuPrincipal {
 
   LeerTeclado lt= new LeerTeclado();
   UsuarioDao uDao;
   ProductoDao prodDao;
+  VentaDao ventDao;
 
   public void mainLogin() {
     uDao=new UsuarioDao();
@@ -31,7 +32,8 @@ public class MenuPrincipal {
       "\n2=Listar producto"+
       "\n3=Editar producto"+
       "\n4=Eliminar producto"+
-      "\n5=Crear Usuario";
+      "\n5=Crear Usuario"+
+      "\n6=Registrar venta";
       opcionesA=lt.leer(0, msg);  
       while(opcionesA!=0){
           switch(opcionesA) {
@@ -55,6 +57,11 @@ public class MenuPrincipal {
               uDao=new UsuarioDao();
               uDao.crearUsuario();
             }  break; 
+            case 6:{
+              ventDao=new VentaDao();
+              ventDao.registrarVenta();
+            }  break; 
+            
 
             default: System.out.println("El Algoritmo no existe!");
           }   

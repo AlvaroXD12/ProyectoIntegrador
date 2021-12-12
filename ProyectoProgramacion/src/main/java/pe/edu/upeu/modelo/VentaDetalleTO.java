@@ -8,6 +8,9 @@ public class VentaDetalleTO {
     public double precioUnit;
     public double precioTotal;
 
+    public VentaDetalleTO() {
+    }
+
     public VentaDetalleTO(String idDetVenta, String idVenta, String idProd, int cantidad, double precioUnit,
             double precioTotal) {
         this.idDetVenta = idDetVenta;

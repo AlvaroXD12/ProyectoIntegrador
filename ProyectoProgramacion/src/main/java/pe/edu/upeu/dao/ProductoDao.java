@@ -49,5 +49,48 @@ public class ProductoDao extends AppCrud{
        System.out.println();
     }
 
+    public void reportarProductos(Object[][] data) {
+      
+       util.pintarLine('H', 32);
+       util.pintarTextHeadBody('H', 3, "ID,Nombre,Precio,Stock,Kilos");
+       System.out.println("");        
+       util.pintarLine('H', 32);
+       String dataPrint="";
+       for (int i = 0; i < data.length; i++) {            
+            dataPrint=data[i][0]+","+data[i][1]+","+data[i][3]+","+data[i][5]+","+data[i][6];
+            util.pintarTextHeadBody('B', 3, dataPrint);   
+       }
+       util.pintarLine('H', 32);
+       System.out.println();
+    }
+
+    public void updateProducto() {
+        
+        util.clearConsole();
+        reportarProductos();
+        String dataId =leerTecla.leer("", "Ingrese el Id del producto");
+        prodTO=new ProductoTO();
+        prodTO.setNombre(leerTecla.leer("", "Ingrese el nuevo nombre"));
+        prodTO.setPesoKilos(leerTecla.leer("", "Ingrese el nuevo peso"));
+        prodTO.setPrecio(leerTecla.leer(0.0, "Ingrese el nuevo precio"));
+        prodTO.setStock(leerTecla.leer(0, "Ingrese el nuevo Stock"));
+        prodTO.setUtilidad(leerTecla.leer(0.0, "Ingrese la nueva utilidad"));
+        leerArch=new LeerArchivo(TABLA_PRODUCTO);
+        Object[][] data= editarRegistro(leerArch, 0, dataId, prodTO);
+        reportarProductos(data);
+    }
+
+    public void deleteProducto(){
+        util.clearConsole();
+        reportarProductos();
+        String dataId=leerTecla.leer("","Ingrese El Id del producto");
+        leerArch=new LeerArchivo(TABLA_PRODUCTO);
+        Object[][] data=eliminarRegistros(leerArch, 0, dataId);
+        util.clearConsole();
+        reportarProductos(data);
+
+
+    }
+
 
 }

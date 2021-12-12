@@ -1,2 +1,1 @@
-p1	A.Caserita	Cereal	106.0	2.0	10	50
-p2	A.Caserita	Cereal	49.0	2.0	10	25
+p1	A.Caserita	Cereal	106.0	0.2	20	100

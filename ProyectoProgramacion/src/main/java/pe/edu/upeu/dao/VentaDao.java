@@ -197,13 +197,19 @@ public class VentaDao extends AppCrud{
             util.pintarLine('H', 40);
             util.pintarTextHeadBody('H', 3, "ID,DNI cliente,Fecha, Sub. Total, Descuento, Imp.Total");
             System.out.println("");
+            double subtotalX=0, descuentoX=0, importeTX=0;
             util.pintarLine('H', 40);
             for (VentaTO TOv : dataReal) {
                 String datax=TOv.getIdVenta()+","+TOv.getDni()+","+TOv.getFecha()+","+
                 TOv.getSubtotal()+","+TOv.getDescuento()+","+TOv.getTotalimporte();
+                subtotalX+=TOv.getSubtotal(); 
+                descuentoX+=TOv.getDescuento(); 
+                importeTX+=TOv.getTotalimporte();
                 util.pintarTextHeadBody('B', 3, datax); 
             }
             System.out.println("");
+            util.pintarLine('H', 40);
+            System.out.println("|Sub Total: S/"+subtotalX+" | Descuento: S/."+descuentoX+"| Imp. Total: S/."+importeTX);
             util.pintarLine('H', 40);
              
          } catch (Exception e){

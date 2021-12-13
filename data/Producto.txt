@@ -1,1 +1,5 @@
-p1	A.Caserita	Cereal	106.0	0.2	20	100
+p1	A.Caserita	Cereal	110.0	2.0	120	49
+p2	A.Pacasmayo	Cereal	132.0	2.0	100	49
+p3	A.Comanche	Cereal	125.0	2.0	100	49
+p4	A.San Luis	Cereal	130.0	3.0	110	49
+p5	Arr.A¤ejo	Cereal	160.0	3.0	115	49

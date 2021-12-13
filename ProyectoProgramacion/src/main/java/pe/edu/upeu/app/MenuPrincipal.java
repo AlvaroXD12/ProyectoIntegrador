@@ -28,12 +28,13 @@ public class MenuPrincipal {
       int opcionesA=0;
       System.out.println("-----BIENVENIDO-----");
       String msg="\nIngrese el Algoritmo que desea Probar"+ 
-      "\n1=Crear producto"+
-      "\n2=Listar producto"+
-      "\n3=Editar producto"+
-      "\n4=Eliminar producto"+
+      "\n1=Crear Producto"+
+      "\n2=Listar Producto"+
+      "\n3=Editar Producto"+
+      "\n4=Eliminar Producto"+
       "\n5=Crear Usuario"+
-      "\n6=Registrar venta";
+      "\n6=Registrar Venta"+
+      "\n7=Reportar Ventas";
       opcionesA=lt.leer(0, msg);  
       while(opcionesA!=0){
           switch(opcionesA) {
@@ -61,8 +62,10 @@ public class MenuPrincipal {
               ventDao=new VentaDao();
               ventDao.registrarVenta();
             }  break; 
-            
-
+            case 7:{
+              ventDao=new VentaDao();
+              ventDao.reporteVentasRangoFecha();
+            }  break;    
             default: System.out.println("El Algoritmo no existe!");
           }   
         System.out.println("");      

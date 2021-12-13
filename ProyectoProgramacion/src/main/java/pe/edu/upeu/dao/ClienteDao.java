@@ -16,7 +16,7 @@ public class ClienteDao extends AppCrud{
 
     public void crearCliente(String dni) {
         
-       //util.clearConsole();        
+       util.clearConsole();        
        cTo=new ClienteTO();
        if(validarDni(dni)){
            cTo.setDni(dni);

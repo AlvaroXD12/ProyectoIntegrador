@@ -19,6 +19,7 @@ public class UsuarioDao extends AppCrud{
 
     public void crearUsuario(){
         util.clearConsole();
+        System.out.println("-------------------------Crear Usuario---------------------------");
         leerArch=new LeerArchivo(TABLA_USUARIO);
         usuTO=new UsuarioTO();
         usuTO.setUsuario(leerTecla.leer("", "Ingrese su usuario"));  

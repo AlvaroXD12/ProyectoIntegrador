@@ -18,6 +18,7 @@ public class ProductoDao extends AppCrud{
 
     public Object[][] crearProducto() {
 
+        System.out.println("------------Cree su Producto------------");
         leerArch=new LeerArchivo(TABLA_PRODUCTO);
         prodTO = new ProductoTO();
         prodTO.setIdProd(generarId(leerArch,0,"p",1));
@@ -33,8 +34,10 @@ public class ProductoDao extends AppCrud{
     }
 
     public void reportarProductos() {
-        util.clearConsole();
-        leerArch=new LeerArchivo(TABLA_PRODUCTO);
+        
+       util.clearConsole();
+       leerArch=new LeerArchivo(TABLA_PRODUCTO);
+       System.out.println("-----------------------Lista de Productos------------------------");
        Object[][] data= listarContenido(leerArch);
        util.pintarLine('H', 32);
        util.pintarTextHeadBody('H', 3, "ID,Nombre,Precio,Stock,Kilos");
@@ -50,7 +53,7 @@ public class ProductoDao extends AppCrud{
     }
 
     public void reportarProductos(Object[][] data) {
-      
+
        util.pintarLine('H', 32);
        util.pintarTextHeadBody('H', 3, "ID,Nombre,Precio,Stock,Kilos");
        System.out.println("");        
@@ -68,6 +71,7 @@ public class ProductoDao extends AppCrud{
         
         util.clearConsole();
         reportarProductos();
+        System.out.println("-------------------Cambiar Datos del Producto--------------------");
         String dataId =leerTecla.leer("", "Ingrese el Id del producto");
         prodTO=new ProductoTO();
         prodTO.setNombre(leerTecla.leer("", "Ingrese el nuevo nombre"));
@@ -83,6 +87,7 @@ public class ProductoDao extends AppCrud{
     public void deleteProducto(){
         util.clearConsole();
         reportarProductos();
+        System.out.println("-----------------------Eliminar Producto------------------------");
         String dataId=leerTecla.leer("","Ingrese El Id del producto");
         leerArch=new LeerArchivo(TABLA_PRODUCTO);
         Object[][] data=eliminarRegistros(leerArch, 0, dataId);
